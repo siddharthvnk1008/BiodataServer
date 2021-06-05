@@ -28,32 +28,7 @@ public class BioServerApplication {
 
 
 	@Bean
-	public RestTemplate restTemplate() {
-
-		RestTemplate restTemplate = null;
-		try {
-			restTemplate = new RestTemplate(clientHttpRequestFactory());
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (KeyStoreException e) {
-			e.printStackTrace();
-		} catch (KeyManagementException e) {
-			e.printStackTrace();
-		}
-		return restTemplate;
-	}
-
-	@Bean
-	public HttpComponentsClientHttpRequestFactory clientHttpRequestFactory() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
-
-		TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
-		SSLContext sslContext = org.apache.http.ssl.SSLContexts.custom()
-				.loadTrustMaterial(null, acceptingTrustStrategy).build();
-		SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
-		CloseableHttpClient httpClient = HttpClients.custom()
-				.setSSLSocketFactory(csf).build();
-		HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-		requestFactory.setHttpClient(httpClient);
-		return requestFactory;
+	public RestTemplate restTemplate(){
+		return  new RestTemplate();
 	}
 }

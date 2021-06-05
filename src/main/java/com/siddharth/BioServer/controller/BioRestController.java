@@ -28,9 +28,7 @@ public class BioRestController {
     @PostMapping(path = "/generateHash", consumes = "application/json")
     public ResponseEntity<String> generateHash(@RequestBody PayuRequestModel requestModel) {
 
-        ResponseEntity responseEntity = restTemplate.postForEntity("https://pk_live_nm9hWU5CreNo:sk_live_7e468kdXd0sjKK9t9Ts5fj3hYG3HD7GVbevmu5mH@api.ippopay.com/v1/order/create",
-                requestModel, ResponseEntity.class);
-        return new ResponseEntity(responseEntity.getBody(), HttpStatus.OK);
+        return new ResponseEntity("Hello Sir", HttpStatus.OK);
     }
 
     private final String key = "JUnC7f";      //put your merchant key value
