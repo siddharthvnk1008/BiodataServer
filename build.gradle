@@ -30,3 +30,10 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+springBoot {
+	mainClass = 'com.siddharth.BioServer.BioServerApplication'
+}
+
+bootJar {
+	mainClass = 'com.siddharth.BioServer.BioServerApplication'
+}
