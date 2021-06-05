@@ -1,0 +1,11 @@
+{
+  "name": "biodatacreator",
+  "addons": [
+    "logentries"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/gradle"
+    }
+  ]
+}
