@@ -1,23 +1,22 @@
 package com.siddharth.BioServer.controller;
 
 
+import com.siddharth.BioServer.model.OrderModel;
 import com.siddharth.BioServer.model.PayuRequestModel;
-import org.json.simple.JSONObject;
+import com.siddharth.BioServer.service.BiodataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @RestController
 @RequestMapping("/hash")
 public class BioRestController {
 
     @Autowired
-    RestTemplate restTemplate;
+    BiodataService biodataService;
 
     /**
      * Api is to send one to one message to respective channels.
@@ -37,6 +36,11 @@ public class BioRestController {
     @GetMapping(path = "/createHash/{hashKey}")
     public String createHash(@PathVariable String hashKey) {
        return calculateHash(hashKey+salt);
+    }
+
+    @PostMapping(path = "/createOrder", consumes = "application/json")
+    public String createOrder(@RequestBody OrderModel orderModel) {
+        return biodataService.createOrder(orderModel);
     }
 
 
